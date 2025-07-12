@@ -21,13 +21,8 @@ devops-python-flask-cicd/
 ├── flask-deployment.yaml # Kubernetes Deployment
 ├── service.yml # Kubernetes Service
 
-yaml
-Copy
-Edit
-
 ## ▶️ Run Locally (for testing)
 
-```bash
 # Build Docker image
 docker build -t flask-app .
 
@@ -36,9 +31,7 @@ docker run -p 5000:5000 flask-app
 Visit: http://localhost:5000
 
 📦 Kubernetes Deployment (via Kind)
-bash
-Copy
-Edit
+
 # Create Kind cluster
 kind create cluster --config config.yml
 
@@ -52,10 +45,9 @@ kubectl apply -f service.yml
 # Port Forward (optional)
 kubectl port-forward svc/flask-service 5000:5000 -n flask
 🧪 Sample Output
-csharp
-Copy
-Edit
+
 Hello from DevOps Pipeline!
+
 📝 Author
 Tanuj Saini
 🔗 GitHub
