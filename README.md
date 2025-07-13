@@ -50,7 +50,7 @@ kubectl apply -f flask-deployment.yaml
 kubectl apply -f service.yml
 
 # Port Forward (optional)
-kubectl port-forward svc/flask-service 5000:5000 -n flask
+kubectl port-forward -n flask svc/flask-service 30880:5000 --address=0.0.0.0
 ```
 
 ## 🧪 Sample Output
