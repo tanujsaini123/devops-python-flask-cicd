@@ -17,6 +17,6 @@ spec:
    spec:
      containers:
        - name: flask-container
-         image: tanujkumar123/devops-python-flask:latest
+         image: tanujkumar123/devops-python-flask-cicd:latest
          ports:
            - containerPort: 5000       
