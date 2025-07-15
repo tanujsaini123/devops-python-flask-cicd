@@ -6,13 +6,9 @@ pipeline {
                 git url: "https://github.com/tanujsaini123/devops-python-flask-cicd.git", branch: "main"
             }
         }
-        stage("build image") {
+        stage("build & deploy") {
             steps {
-                sh "docker build -t devops-python-flask-cicd ."
-            }
-        }
-        stage("deploy") {
-            steps {
+                sh "docker compose down || true"
                 sh "docker compose up -d --build"
             }
         }
