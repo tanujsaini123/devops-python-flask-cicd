@@ -6,7 +6,24 @@ pipeline {
                 git url: "https://github.com/tanujsaini123/devops-python-flask-cicd.git", branch: "main"
             }
         }
-        stage("build & deploy") {
+        stage("build image") {
+            steps {
+                sh "docker build -t devops-python-flask-cicd ."
+            }
+        }
+        stage("Push To DockerHub"){
+            steps{
+                withCredentials([usernamePassword(
+                    credentialsId:"dockerHubcreds",
+                    usernameVariable:"dockerHubUser", 
+                    passwordVariable:"dockerHubPass")]){
+                sh "docker login -u ${dockerHubUser} -p ${dockerHubPass}"
+                sh "docker tag devops-python-flask-cicd:latest ${dockerHubUser}/devops-python-flask-cicd:latest"
+                sh "docker push ${dockerHubUser}/devops-python-flask-cicd:latest"
+                }
+            }
+        }
+        stage("deploy") {
             steps {
                 sh "docker compose down || true"
                 sh "docker compose up -d --build"
@@ -14,3 +31,4 @@ pipeline {
         }
     }
 }
+
